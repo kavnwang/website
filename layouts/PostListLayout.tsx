@@ -7,7 +7,7 @@ export default function PostListLayout({ posts }: {posts: Post[]}) {
 
   return (
     <div>
-        <ul className={'flex flex-col space-y-8'}>
+        <ul className={'flex flex-col space-y-8 pb-32'}>
             {
                 posts.map((post) => {
                     return (
