@@ -72,7 +72,7 @@ export default function PostPage ({ code, frontMatter, slug }: PostPageProps) {
   const date = new Date(frontMatter.date);
 
   return (
-    <div className={'flex pl-48 pr-96 pt-32 flex-col font-normal text-lg space-y-12'}>
+    <div className={'flex pl-48 pr-96 pt-32 flex-col font-normal text-lg space-y-12 pb-32'}>
       <div className={'flex flex-col space-y-2'}>
         <h2 className={'text-xl font-semibold'}>{frontMatter.title}</h2>
         <div className={'flex flex-row space-x-4 text-lg'}>
