@@ -4,9 +4,9 @@ export default function Photos() {
   return (
     <div>
         <PageLayout>
-            <div>
-              
-            </div>
+              <div>
+                Coming soon!
+              </div>
         </PageLayout>
     </div>
   );

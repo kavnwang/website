@@ -1,1 +1,1 @@
-Website built with Node.js, design inspired by ekzhang.com and maggieliu.dev.
+Website built with Node.js, design inspired by ekzhang.com.
