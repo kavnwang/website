@@ -3,11 +3,14 @@ import Link from 'next/link';
 
 const NavBar = () => {
     return (
-        <nav className={`fixed`}>
-            <Link href={`/about`}>
-                About
-            </Link>
-
+        <nav className={`pt-16 font-semilight text-2xl w-full flex flex-row justify-between space-x-12 items-end px-48 py-6 `}>
+            <div className={`text-3xl font-semibold`}>
+                <Link href={`/`}>
+                Kevin Wang
+                </Link>
+            </div>
+            
+            <div className={"flex flex-row space-x-8"}>
             <Link href={`/photos`}>
                 Photos
             </Link>
@@ -19,6 +22,8 @@ const NavBar = () => {
             <Link href={`/experience`}>
                 Experience
             </Link>
+            </div>
+            
         </nav>
     )
 }

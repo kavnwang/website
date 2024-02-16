@@ -5,9 +5,9 @@ const PageLayout: React.FC<{ full?: boolean, children: React.ReactNode}> = ({
   full = false, children }) => {
 
   return (
-    <div>
+    <div className="bg-white ">
       <NavBar />
-      <div>
+      <div className="px-48 pt-8 mx-auto flex flex-col justify-center ">
         {children}
       </div>
     </div>
