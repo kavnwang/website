@@ -1,0 +1,10 @@
+.post :where(h1) {
+    font-size:x-large;
+    font-weight:600;
+    font-family: "Inter var";
+}
+
+.post :where(li) {
+    list-style-type:decimal;
+    margin-bottom:0.5rem;
+}

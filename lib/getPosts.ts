@@ -21,7 +21,7 @@ export const postFiles = fs
 export const getPosts = (): Post[] => {
     return postFiles.map((file) => {
         const filePath = path.join(POSTS_PATH, file.path);
-        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
         const {content, data} = matter(fileContent);
 
         return {

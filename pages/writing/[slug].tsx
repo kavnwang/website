@@ -6,6 +6,9 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { getPosts, postFiles} from '@/lib/getPosts';
 import {bundleMDX} from 'mdx-bundler';
 import { useMemo } from 'react';
+import Link from 'next/link';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from "remark-math";
 
 type PostPageProps = {
   code: string;
@@ -34,13 +37,26 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     return {notFound: true};
   }
 
-  const { code, frontmatter } = await bundleMDX({
+  const { code } = await bundleMDX({
     source: post.content,
+    mdxOptions(options) {
+      options.remarkPlugins = [
+        ...(options.remarkPlugins ?? []),
+        remarkMath,
+      ];
+
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeKatex,
+      ];
+      return options;
+    },
   });
   
+
   return { props: {
     code,
-    frontMatter: frontmatter,
+    frontMatter: post.data,
     slug,
   } };
 };
@@ -51,10 +67,27 @@ export default function PostPage ({ code, frontMatter, slug }: PostPageProps) {
     () => getMDXComponent(code, frontMatter),
     [code, frontMatter]
   );
+
   
   return (
-    <div>
-      <Content {...frontMatter} />
+    <div className={'flex pl-48 pr-96 pt-32 flex-col font-normal text-lg space-y-12'}>
+      <div className={'flex flex-col space-y-2'}>
+        <h2 className={'text-xl font-semibold'}>{frontMatter.title}</h2>
+        <div className={'flex flex-row space-x-4 text-lg'}>
+          <Link href={'/writing'} className={'font-normal hover:underline hover:decoration-dotted hover:underline-offset-8'}>
+            Kevin Wang
+          </Link>
+          <h4>
+          •
+          </h4>
+          <h4 className={'font-light'}>
+            {frontMatter.date}
+          </h4>
+        </div>
+      </div>
+      <div className={'font-serif flex flex-col space-y-8 post'}>
+        <Content {...frontMatter} />
+      </div>
     </div>
   )
   
