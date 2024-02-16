@@ -1,7 +1,7 @@
 import PageLayout from "@/layouts/PageLayout";
 import Link from 'next/link';
 import PostListLayout from "@/layouts/PostListLayout";
-import { getPosts } from '@/lib/getPosts';
+import { getPosts, getPostsByDate } from '@/lib/getPosts';
 import { GetStaticProps } from "next";
 import { Post } from "@/lib/types";
 
@@ -22,7 +22,7 @@ export default function Writing({ posts }: { posts: Post[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getPosts();
+  const posts = getPostsByDate();
   return {
     props: {
       posts,

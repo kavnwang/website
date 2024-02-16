@@ -9,6 +9,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from "remark-math";
+import { format } from 'date-fns';
 
 type PostPageProps = {
   code: string;
@@ -68,7 +69,8 @@ export default function PostPage ({ code, frontMatter, slug }: PostPageProps) {
     [code, frontMatter]
   );
 
-  
+  const date = new Date(frontMatter.date);
+
   return (
     <div className={'flex pl-48 pr-96 pt-32 flex-col font-normal text-lg space-y-12'}>
       <div className={'flex flex-col space-y-2'}>
@@ -81,7 +83,7 @@ export default function PostPage ({ code, frontMatter, slug }: PostPageProps) {
           •
           </h4>
           <h4 className={'font-light'}>
-            {frontMatter.date}
+            {format(date, 'MMMM dd, yyyy')}
           </h4>
         </div>
       </div>

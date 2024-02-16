@@ -23,11 +23,25 @@ export const getPosts = (): Post[] => {
         const filePath = path.join(POSTS_PATH, file.path);
         const fileContent = fs.readFileSync(filePath, 'utf-8');
         const {content, data} = matter(fileContent);
-
+        
+        const date = data.date;
         return {
           content,
-          data,
+          data: {
+            ...data,
+            date,
+          },
           slug: file.slug,
         } as Post; 
     });
+}
+
+export const getPostsByDate = (): Post[] => {
+  const posts = getPosts();
+  posts.sort((a : Post, b : Post) => {
+    const dateA = new Date(a.data.date);
+    const dateB = new Date(b.data.date);
+    return dateB.getTime() - dateA.getTime();
+  });
+  return posts;
 }
